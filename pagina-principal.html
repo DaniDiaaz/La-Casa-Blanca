@@ -167,7 +167,7 @@
       width: 100%;
       max-width: 1200px;
       margin: 40px auto;
-      padding: 30px;
+      padding: 40px 20px;
       background-color: #ffffff;
       color: #333;
       border-radius: 10px;
@@ -425,47 +425,44 @@
     .contenido-categoria.activa {
       max-height: 1000px;
     }
-    #panel-partidos {
-      position: fixed;
-      top: 600px;
-      right: 20px;
-      width: 270px;
-      max-height: 210px;
-      overflow-y: auto;
-      z-index: 999;
-      background-color: #f5f5f5;
-      border-left: 3px solid #C5B358;
-      box-shadow: -4px 0 10px rgba(0, 0, 0, 0.1);
-      padding: 15px;
-      border-radius: 8px;
-    }
-    #panel-partidos h3 {
-      color: #003399;
-      margin-top: 0;
-      margin-bottom: 15px;
-      font-size: 1.4rem;
-      text-align: center;
-    }
-    #panel-partidos .tabla-partidos {
-      width: 100%;
-      border-collapse: collapse;
+    .timeline-horizontal {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+      padding: 20px;
       font-size: 14px;
+      flex-direction: row;
     }
-    #panel-partidos .tabla-partidos th,
-    #panel-partidos .tabla-partidos td {
-      border: 1px solid #ddd;
-      padding: 6px;
+    .evento {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 180px;
+    }
+    .fecha {
+      background-color: #C5B358;
+      color: #003399;
+      border: none;
+      padding: 10px 14px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      width: 100%;
+      transition: background-color 0.3s ease;
       text-align: center;
     }
-    #panel-partidos .tabla-partidos th {
-      background-color: #8b0000;
-      color: white;
+    .fecha:hover {
+      background-color: #A89030;
     }
-    #panel-partidos .tabla-partidos tr:nth-child(even) {
-      background-color: #f9f9f9;
-    }
-    #panel-partidos .tabla-partidos tr:hover {
-      background-color: #ffe6e6;
+    .detalle {
+      display: none;
+      background-color: #f4f4f4;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      padding: 10px;
+      margin-top: 8px;
+      text-align: left;
     }
     footer {
       background-color: #003399;
@@ -831,7 +828,54 @@
 </section>
 
 <section class="seccion" id="historia">
-  <h2>Historia</h2>
+  <h2>Historia del Real Madrid</h2>
+  <p>Un recorrido por los momentos más emblemáticos del club más grande del mundo</p>
+
+  <div class="timeline-horizontal">
+    <div class="evento">
+      <button class="fecha" onclick="ToggleEvent(this)">1902 - Fundación</button>
+      <div class="detalle">
+      <p>El club fue fundado como Madrid Football Club el 6 de marzo de 1902. En 1920, el rey Alfonso XIII le otorgó el título de "Real".</p>
+      </div>
+    </div>
+
+    <div class="evento">
+      <button class="fecha" onclick="ToggleEvent(this)">1956 - 1ª Copa de Europa</button>
+      <div class="detalle">
+      <p>El Real Madrid gana la primera edición del torneo continental, venciendo al Stade de Reims (4-3). Comienza la era dorada.</p>
+      </div>
+    </div>
+
+
+    <div class="evento">
+      <span class="fecha">1960</span>
+      <p><strong>La Quinta Copa de Europa:</strong> El Madrid conquista su quinta copa consecutiva, con una exhibición histórica ante el Eintracht Frankfurt (7-3) con cuatro goles de Puskás.</p>
+    </div>
+    <div class="evento">
+      <span class="fecha">1981-1986</span>
+      <p><strong>Nace la "Quinta del Buitre":</strong> Con Butragueño, Sanchís, Míchel, Martín Vázquez y Pardeza, el club vuelve a dominar en España con cinco ligas consecutivas.</p>
+    </div>
+    <div class="evento">
+      <span class="fecha">1998</span>
+      <p><strong>La Séptima:</strong> Tras 32 años sin lograrla, el Madrid gana la Champions en Ámsterdam frente a la Juventus gracias a un gol de Mijatović (1-0).</p>
+    </div>
+    <div class="evento">
+      <span class="fecha">2000</span>
+      <p><strong>Florentino y los Galácticos:</strong> Llega Florentino Pérez a la presidencia. Fichajes como Figo, Zidane, Ronaldo o Beckham marcan una era de estrellas.</p>
+    </div>
+    <div class="evento">
+      <span class="fecha">2014</span>
+      <p><strong>La Décima:</strong> En Lisboa, Sergio Ramos empata de cabeza en el 93’ y el equipo remonta al Atlético en la prórroga (4-1). Carlo Ancelotti entra en la historia.</p>
+    </div>
+    <div class="evento">
+      <span class="fecha">2016-2018</span>
+      <p><strong>Tricampeonato histórico:</strong> Tricampeonato histórico:</strong> Zidane dirige al equipo a tres Champions consecutivas. Cristiano, Modrić, Kroos, Marcelo y Ramos lideran una generación legendaria.</p>
+    </div>
+    <div class="evento">
+      <span class="fecha">2022</span>
+      <p><strong>La 14ª Champions:</strong> Tras eliminar a PSG, Chelsea y City con remontadas increíbles, el Madrid gana al Liverpool en París. Courtois MVP, Vinícius marca el gol del título.</p>
+    </div>
+  </div>
 </section>
 
 <section class="seccion" id="contacto">
@@ -839,55 +883,6 @@
   <p>Puedes seguirnos en nuestras redes sociales</p>
 </section>
 </main>
-
-<div id="panel-partidos">
-  <h3>Próximos partidos</h3>
-  <table class="tabla-partidos" id="tabla-partidos">
-    <thead>
-      <tr>
-      <th>Fecha</th>
-      <th>Hora</th>
-      <th>Partido</th>
-      </tr>
-    </thead>
-    <tbody>
-
-    </tbody>
-  </table>
-</div>
-
-<script>
-  const partidos = [
-    {fecha: "2025-08-17", hora:"", equipo1: "Deportivo Alavés", equipo2:"Levante UD"},
-    {fecha: "2025-08-17", hora:"", equipo1: "Athletic Club", equipo2:"Sevilla FC"},
-    {fecha: "2025-08-17", hora:"", equipo1: "Celta de Vigo", equipo2:"Getafe CF"},
-    {fecha: "2025-08-17", hora:"", equipo1: "Gerona FC", equipo2:"Rayo Vallecano"},
-    {fecha: "2025-08-17", hora:"", equipo1: "RCD Espanyol", equipo2:"Atlético de Madrid"},
-    {fecha: "2025-08-17", hora:"", equipo1: "RCD Mallorca", equipo2:"FC Barcelona"},
-    {fecha: "2025-08-17", hora:"", equipo1: "Elche CF", equipo2:"Real Betis Balompié"},
-    {fecha: "2025-08-17", hora:"", equipo1: "Real Madrid CF", equipo2:"Osasuna"},
-    {fecha: "2025-08-17", hora:"", equipo1: "Valencia CF", equipo2:"Real Sociedad"},
-    {fecha: "2025-08-17", hora:"", equipo1: "Villarreal CF", equipo2:"Real Oviedo"},
-  ];
-  const tbody = document.querySelector("#tabla-partidos tbody");
-  partidos.forEach(partido => {
-  const fila = document.createElement("tr")
-  
-  const celdaFecha = document.createElement("td");
-  celdaFecha.textContent = partido.fecha;
-  
-  const celdaHora = document.createElement("td");
-  celdaHora.textContent = partido.hora;
-
-  const celdaPartido = document.createElement("td");
-  celdaPartido.textContent = `${partido.equipo1} vs ${partido.equipo2}`;
-
-  fila.appendChild(celdaFecha);
-  fila.appendChild(celdaHora);
-  fila.appendChild(celdaPartido);
-  tbody.appendChild(fila);
-  });
-</script>
 
 <script>
   const carruselContenido = document.querySelector('.carrusel-contenido');
@@ -933,9 +928,20 @@
   });
 </script>
 
+<script>
+  function ToggleEvento(boton) {
+    const detalle = boton.nextElementSibling;
+    if (detalle.style.display = detalle.style.display === "block") {
+      detalle.style.display = "none";
+  } else {
+    detalle.style.display = "block";
+  }
+  }
+</script>
+
 <footer>
   <div class="footer-contenido">
-    <p>© 2025 Futboleros. Todos los derechos reservados.</p>
+    <p>© 2025 La Casa Blanca. Todos los derechos reservados.</p>
     <div class="redes-sociales">
         <a href="https://instagram.com/tu_usuario" target="_blank" rel="noopener">Instagram</a>
     </div>
