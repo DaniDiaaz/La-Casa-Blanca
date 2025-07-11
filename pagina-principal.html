@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&display=swap" rel="stylesheet">
+  <title>La Casa Blanca</title>
+  <style>
+    body {
+      background-color: #ffffff;
+      background-image: none;
+      font-family: 'Montserrat', sans-serif;
+      color: #003399;
+      margin: 0;
+      padding-top: 70px;
+    }
+
+    h1, h2, h3 {
+      color: #003399;
+      font-weight: 700;
+    }
+
+    p {
+      font-weight: 400;
+    }
+    .navbar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.95);
+      backdrop-filter: blur(6px);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+      z-index: 1000;
+    }
+    .navbar-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 10px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .navbar h1 {
+      font-size: 22px;
+      color: white;
+      margin: 0;
+      font-weight: bold;
+    }
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .logo {
+      width: 32px;
+      height: 32px;
+    }
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 30px;
+      margin: 0;
+      padding: 0;
+    }
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 15px;
+      position: relative;
+      transition: color 0.3s ease;
+    }
+    .nav-links a:hover {
+      color: #C5B358;
+    }
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      width: 0%;
+      height: 2px;
+      background: #C5B358;
+      left: 0;
+      bottom: -4px;
+      transition: width 0.3s ease;
+    }
+    main {
+      max-width: none;
+      padding: 20px;
+    }
+    .hero {
+      width: 100%;
+      background-image: url(bernabeu.jpg);
+      background-size: cover;
+      background-position: center;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      text-align: center;
+      z-index: 1;
+    }
+    .hero-contenido {
+      background: rgba(0, 0, 0, 0.5);
+      padding: 40px 60px;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+    }
+    .hero-logo {
+      width: 80px;
+      margin-bottom: 10px;
+    }
+    .hero h2 {
+      font-size: 32px;
+      margin-bottom: 10px;
+      color: white;
+    }
+    .hero p {
+      font-size: 18px;
+      margin-bottom: 20px;
+    }
+    .btn-hero {
+      background-color: #C5B358;
+      color: #003399;
+      padding: 10px 20px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background-color 0.3s ease;
+    }
+    .btn-hero:hover {
+      background-color: #A89030;
+    }
+    .palmares-hero {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      align-items: center;
+      margin-top: 20px;
+      background-color: rgba(0, 0, 0, 0.4);
+      padding: 10px 20px;
+      border-radius: 12px;
+      backdrop-filter: blur(4px);
+      opacity: 0;
+      transform: translateY(20px);
+      animation: aparecerTrofeos 1s ease-out forwards;
+      animation-delay: 0.5s;
+    }
+    @keyframes aparecerTrofeos {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .trofeo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: white;
+      font-weight: bold;
+      font-size: 1.1rem;
+    }
+    .trofeo img {
+      height: 32px;
+    }
+    .seccion {
+      width: 100%;
+      max-width: 1200px;
+      margin: 40px auto;
+      padding: 30px;
+      background-color: #ffffff;
+      color: #333;
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      scroll-margin-top: 80px;
+    }
+    .seccion h2 {
+      text-align: center;
+      font-size: 32px;
+      margin-bottom: 30px;
+      animation: entradaTitulo 1s ease-out forwards;
+      opacity: 0;
+    }
+    @keyframes entradaTitulo {
+      0% {
+        transform: translateY(-20px);
+        opacity: 0;
+      }
+      100% {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+    .seccion p {
+      line-height: 1.6;
+      color: #444;
+    }
+    .noticias-seccion {
+      max-width: 1200px;
+      margin: 40px auto;
+      padding: 30px;
+      background-color: #ffffff;
+      color: #333;
+      border-radius: 12px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+    }
+    .noticias-seccion h2 {
+      color: #003399;
+      margin-bottom: 25px;
+      font-size: 28px;
+      text-align: center;
+    }
+    .noticias-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+    .noticia {
+      background: #f9f9f9;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.3s ease;
+      justify-content: space-between;
+      height: 100%;
+    }
+    .noticia:hover {
+      transform: translateY(-6px);
+    }
+    .noticia img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+    }
+    .noticia h3 {
+      color: #8b0000;
+      font-size: 18px;
+      margin: 15px;
+    }
+    .noticia p {
+      font-size: 14px;
+      margin: 0 15px 15px 15px;
+      color: #444;
+    }
+    .btn-noticia {
+      margin: 10px 15px 15px;
+      padding: 8px 12px;
+      background-color: #C5B358;
+      color: #003399;
+      text-decoration: none;
+      border-radius: 6px;
+      font-size: 13px;
+      align-self: start;
+      transition: background-color 0.3s;
+    }
+    .btn-noticia:hover {
+      background-color: #A89030;
+    }
+    .carrusel {
+      position: relative;
+      max-width: 600px;
+      margin: 0 auto;
+      overflow: hidden;
+    }
+    .carrusel-contenido {
+      display: flex;
+      transition: transform 0.5s ease;
+    }
+    .video {
+      min-width: 100%;
+      padding: 0 50px;
+      box-sizing: border-box;
+    }
+    .video iframe {
+      width: 100%;
+      height: 315px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s ease;
+    }
+    .video iframe:hover {
+      transform: scale(1.03);
+    }
+    .titulo-video {
+      margin-top: 10px;
+      font-size: 16px;
+      font-weight: 600;
+      color: #003399;
+      text-align: center;
+    }
+    .btn-prev, .btn-next {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: #C5B358;
+      border: none;
+      color: #003399;
+      font-size: 30px;
+      padding: 12px 16px;
+      border-radius: 50%;
+      cursor: pointer;
+      user-select: none;
+      z-index: 500;
+      transition: background-color 0.3s ease;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    }
+    .btn-prev:hover, .btn-next:hover {
+      background-color: #A89030;
+    }
+    .btn-prev {
+      left: 0px; 
+    }
+    .btn-next {
+      right: 0px;
+    }
+    html {
+      scroll-behavior: smooth;
+    }
+    @media (max-width: 768px) {
+      body {
+       padding-top: 50px;
+      }
+    .navbar-container {
+      padding: 10px 15px;
+      flex-direction: column;
+      align-items: flex-start;
+    }  
+    .nav-links {
+      flex-direction: column;
+      gap: 10px;
+    }
+    .galeria-jugadores {
+      padding: 10px 20px;
+      gap: 20px;
+      justify-content: center;
+    }
+    .tarjeta-jugador {
+      width: 45vw;
+      height: auto;
+    }
+    .contenido-jugador h3 {
+      font-size: 16px;
+    }
+    .contenido-jugador p {
+      font-size: 12px;
+    }
+  }
+    .galeria-jugadores {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 40px;
+      justify-content: center;
+      padding: 30px 60px 30px 40px;
+      max-width: 1200px;
+      margin: 0 auto;
+      align-items: flex-start;
+    }
+    .tarjeta-jugador {
+      width: 220px;
+      height: 320px;
+      background: linear-gradient(to bottom, #ffffff, #f2f2f2);
+      border: 2px solid #d9d9d9;
+      border-radius: 16px;
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-sizing: border-box;
+      min-width: 220px;
+    }
+    .tarjeta-jugador img {
+      width: 160px;
+      height: 160px;
+      object-fit: cover;
+      border-radius: 10px;
+      border: 2px solid #ddd;
+      background-color: #eee;
+    }
+    .contenido-jugador {
+      text-align: center;
+      padding: 15px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .tarjeta-jugador:hover {
+      transform: scale(1.08) rotate(1deg);
+      box-shadow: 0 12px 25px rgba(0, 0, 0, 0.3);
+      border-color: gold;
+    }
+    .contenido-jugador h3 {
+      font-size: 18px;
+      margin-top: 12px;
+      color: #003399;
+    }
+    .contenido-jugador p {
+      font-size: 14px;
+      color: #555;
+    }
+    .btn-categoria {
+      width: 100%;
+      background-color: #003399;
+      color: white;
+      padding: 12px;
+      font-size: 16px;
+      text-align: left;
+      border: none;
+      cursor: pointer;
+      border-radius: 8px;
+      margin-bottom: 5px;
+      transition: background-color 0.3s;
+    }
+    .btn-categoria:hover {
+      background-color: #C5B358;
+      color: #003399;
+    }
+    .contenido-categoria {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.5s ease;
+    }
+    .contenido-categoria.activa {
+      max-height: 1000px;
+    }
+    #panel-partidos {
+      position: fixed;
+      top: 600px;
+      right: 20px;
+      width: 270px;
+      max-height: 210px;
+      overflow-y: auto;
+      z-index: 999;
+      background-color: #f5f5f5;
+      border-left: 3px solid #C5B358;
+      box-shadow: -4px 0 10px rgba(0, 0, 0, 0.1);
+      padding: 15px;
+      border-radius: 8px;
+    }
+    #panel-partidos h3 {
+      color: #003399;
+      margin-top: 0;
+      margin-bottom: 15px;
+      font-size: 1.4rem;
+      text-align: center;
+    }
+    #panel-partidos .tabla-partidos {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+    #panel-partidos .tabla-partidos th,
+    #panel-partidos .tabla-partidos td {
+      border: 1px solid #ddd;
+      padding: 6px;
+      text-align: center;
+    }
+    #panel-partidos .tabla-partidos th {
+      background-color: #8b0000;
+      color: white;
+    }
+    #panel-partidos .tabla-partidos tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+    #panel-partidos .tabla-partidos tr:hover {
+      background-color: #ffe6e6;
+    }
+    footer {
+      background-color: #003399;
+      color: white;
+      padding: 5px;
+      font-size: 10px;
+      text-align: center;
+      font-family: Arial, Helvetica, sans-serif;
+      margin-top: 80px;
+      border-top: 1px solid #C5B358;
+    }
+    .footer-contenido {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .footer-contenido p {
+      margin: 5px 0;
+    }
+    .redes-sociales a {
+      color: white;
+      margin: 0 10px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s ease;
+    }
+    .redes-sociales a:hover {
+      color: #C5B358;
+    }
+  </style>
+</head>
+<body>
+
+<header class="navbar">
+  <div class="navbar-container">
+  <div class="logo-container">
+    <img src="logo.png" alt="Logo Real Madrid" class="logo">
+    <h1>La Casa Blanca</h1>
+  </div>
+  <nav class="menu-nav">
+    <ul class="nav-links">
+      <li><a href="#noticias">Noticias</a></li>
+      <li><a href="#videos">Vídeos</a></li>
+      <li><a href="#plantilla">Plantilla</a></li>
+      <li><a href="#historia">Historia</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+  </nav>
+</div>
+</header>
+
+<main>
+<section class="hero">
+  <div class="hero-contenido">
+    <img src="logo.png" alt="Logo" class="hero-logo">
+    <h2>Bienvenido a La Casa Blanca</h2>
+    <p>Tu fuente número uno sobre el Real Madrid.</p>
+    <a href="#noticias" class="btn-hero">Ver noticias</a>
+    <div class="palmares-hero">
+      <div class="trofeo">
+        <img src="champions.jpg" alt="Champions League">
+        <span>15 Champions</span>
+      </div>
+      <div class="trofeo">
+        <img src="laliga.jpg" alt="La Liga">
+        <span>36 Ligas</span>
+      </div>
+      <div class="trofeo">
+        <img src="copadelrey.jpg" alt="Copa del Rey">
+        <span>20 Copas</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="seccion" id="noticias">
+  <h2>Noticias</h2>
+  <div class="noticias-grid">
+
+    <div class="noticia">
+      <img src="modricnoticia.jpg" alt="Noticia 1">
+      <h3>Última entrevista de Luka Modrić</h3>
+      <p>La última entrevista de Luka Modrić como jugador del Real Madrid, fue dada a los medios de Real Madrid TV.</p>
+      <a href="#" class="btn-noticia">Leer más</a>
+    </div>
+
+    <div class="noticia">
+      <img src="modric.jpg" alt="Noticia 1">
+      <h3>Gracias por todo LEYENDA</h3>
+      <p>Ayer fue el último partido de Luka Modrić con el Real Madrid, una de las mayores leyendas de nuestro club.</p>
+      <a href="#" class="btn-noticia">Leer más</a>
+    </div>
+
+    <div class="noticia">
+      <img src="xabi.jpg" alt="Noticia 2">
+      <h3>Adiós temporada 24/25</h3>
+      <p>A pesar del resultado, Xabi Alonso afirmó que este revés servirá para “abrir una nueva era” en el equipo y aprender de los errores.</p>
+      <a href="#" class="btn-noticia">Leer más</a>
+    </div>
+
+    <div class="noticia">
+      <img src="psg.jpg" alt="Noticia 3">
+      <h3>El PSG arrolla al Real Madrid</h3>
+      <p>PSG 4–0 Real Madrid en la semifinal del Mundial de Clubes. Fabián Ruiz marcó 2 goles (6′ y 24′), Ousmane Dembélé anotó tras un error defensivo (9′) y Gonçalo Ramos sentenció en el 87′.</p>
+      <a href="#" class="btn-noticia">Leer más</a>
+    </div>
+
+    <div class="noticia">
+      <img src="luisenrique.jpg" alt="Noticia 4">
+      <h3>PSG vs Real Madrid</h3>
+      <p>Luis Enrique, entrenador del PSG, esquiva hablar de Mbappé y destaca lo que significa medirse con “el equipo más exitoso del mundo” bajo condiciones extremas.</p>
+      <a href="#" class="btn-noticia">Leer más</a>
+    </div>
+
+    <div class="noticia">
+      <img src="tchouameninoticia.jpg" alt="Noticia 5">
+      <h3>Tchouaméni: "Ojalá siga en el Madrid"</h3>
+      <p>El mediocentro francés, pieza clave para Xabi Alonso, reafirma su voluntad de quedarse a largo plazo con el club.</p>
+      <a href="#" class="btn-noticia">Leer más</a>
+    </div>
+
+    <div class="noticia">
+      <img src="rodrygonoticia.jpg" alt="Noticia 6">
+      <h3>El Bayern tantea a Rodrygo</h3>
+      <p>Bayern explora una oferta de unos 65 M€ por Rodrygo, pero el Madrid quiere entre 80‑100 M€ y parece poco probable que le dejen ir.</p>
+      <a href="#" class="btn-noticia">Leer más</a>
+    </div>
+
+    <div class="noticia">
+      <img src="frangarcianoticia.jpg" alt="Noticia 7">
+      <h3>Fran García llama la atención</h3>
+      <p>El lateral izquierdo se ha ganado elogios en su rol con el sistema 3‑5‑2 de Xabi Alonso, haciendo replantearse un posible fichaje de Carreras.</p>
+      <a href="#" class="btn-noticia">Leer más</a>
+    </div>
+  </div>
+</section>
+
+<section class="seccion" id="videos">
+  <h2>📺 Vídeos destacados</h2>
+  <div class="carrusel">
+    <button class="btn-prev">&#10094;</button>
+    <div class="carrusel-contenido">
+    <div class="video">
+      <iframe src="https://www.youtube.com/embed/Rc53dNT9oBo" title="Rueda de prensa Modrić"></iframe>
+      <p class="titulo-video">La última entrevista de Modrić como jugador blanco</p>
+    </div>
+
+    <div class="video">
+      <iframe src="https://www.youtube.com/embed/RMH0m9MVPig" title="Rueda de prensa Xabi Alonso" frameborder="0" allowfullscreen></iframe>
+      <p class="titulo-video">Las palabras de Xabi Alonso tras la derrota ante el PSG</p>
+    </div>
+
+    <div class="video">
+      <iframe src="https://www.youtube.com/embed/elnrftCjt9M" title="PSG vs Real Madrid" frameborder="0" allowfullscreen></iframe>
+      <p class="titulo-video">PSG vs Real Madrid</p>
+    </div>
+  </div>
+  <button class="btn-next">&#10095;</button>
+  </div>
+</section>
+
+<section class="seccion" id="plantilla">
+  <h2>Plantilla 2025/26</h2>
+
+<div class="categoria-jugadores">
+  <button class="btn-categoria">Porteros</button>
+    <div class="contenido-categoria">
+      <div class="galeria-jugadores">
+
+        <div class="tarjeta-jugador portero">
+         <div class="contenido-jugador">
+        <img src="courtois.jpg" alt="Courtois">
+        <h3>1 - Thibaut Courtois</h3>
+        <p>Portero</p>
+      </div>
+    </div>
+    <div class="tarjeta-jugador portero">
+      <div class="contenido-jugador">
+        <img src="lunin.jpg" alt="Lunin">
+        <h3>13 - Andriy Lunin</h3>
+        <p>Portero</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="categoria-jugadores">
+  <button class="btn-categoria">Defensas</button>
+    <div class="contenido-categoria">
+      <div class="galeria-jugadores">
+
+        <div class="tarjeta-jugador defensa">
+          <div class="contenido-jugador">
+          <img src="carvajal.jpg" alt="Carvajal">
+          <h3>2 - Dani Carvajal</h3>
+          <p>Lateral derecho</p>
+        </div>
+      </div>
+    <div class="tarjeta-jugador defensa">
+      <div class="contenido-jugador">
+        <img src="militao.jpg" alt="Militao">
+        <h3>3 - Éder Militao</h3>
+        <p>Defensa central</p>
+      </div>
+    </div>
+    <div class="tarjeta-jugador defensa">
+      <div class="contenido-jugador">
+        <img src="alaba.jpg" alt="Alaba">
+        <h3>4 - David Alaba</h3>
+        <p>Defensa central</p>
+      </div>
+    </div>
+    <div class="tarjeta-jugador defensa">
+      <div class="contenido-jugador">
+        <img src="trent.jpg" alt="Arnold">
+        <h3>12 - Trent</h3>
+        <p>Lateral derecho</p>
+      </div>
+    </div>
+    <div class="tarjeta-jugador defensa">
+      <div class="contenido-jugador">
+        <img src="frangarcia.jpg" alt="Fran">
+        <h3>20 - Fran García</h3>
+        <p>Lateral izquierdo</p>
+      </div>
+    </div>
+    <div class="tarjeta-jugador defensa">
+      <div class="contenido-jugador">
+        <img src="asencio.jpg" alt="Asencio">
+        <h3>35 - Raúl Asencio</h3>
+        <p>Defensa central</p>
+      </div>
+    </div>
+    <div class="tarjeta-jugador defensa">
+      <div class="contenido-jugador">
+        <img src="rudiger.jpg" alt="Rudiger">
+        <h3>22 - Antonio Rüdiger</h3>
+        <p>Defensa central</p>
+      </div>
+    </div>
+    <div class="tarjeta-jugador defensa">
+      <div class="contenido-jugador">
+        <img src="mendy.jpg" alt="Mendy">
+        <h3>23 - Ferland Mendy</h3>
+        <p>Lateral izquierdo</p>
+      </div>
+    </div>
+    <div class="tarjeta-jugador defensa">
+      <div class="contenido-jugador">
+        <img src="huijsen.jpg" alt="Huijsen">
+        <h3>24 - Dean Huijsen</h3>
+        <p>Defensa central</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+  <div class="categoria-jugadores">
+    <button class="btn-categoria">Centrocampistas</button>
+      <div class="contenido-categoria">
+        <div class="galeria-jugadores">
+
+          <div class="tarjeta-jugador medio">
+          <div class="contenido-jugador">
+          <img src="bellingham.jpg" alt="Bellingham">
+          <h3>5 - Jude Bellingham</h3>
+          <p>Centrocampista</p>
+        </div>
+      </div>
+
+    <div class="tarjeta-jugador medio">
+      <div class="contenido-jugador">
+        <img src="camavinga.jpg" alt="Camavinga">
+        <h3>6 - Eduardo Camavinga</h3>
+        <p>Centrocampista</p>
+      </div>
+    </div>
+
+    <div class="tarjeta-jugador medio">
+      <div class="contenido-jugador">
+        <img src="valverde.jpg" alt="Valverde">
+        <h3>8 - Federico Valverde</h3>
+        <p>Centrocampista</p>
+      </div>
+    </div>
+
+    <div class="tarjeta-jugador medio">
+      <div class="contenido-jugador">
+        <img src="Tchouameni.jpg" alt="Tchouameni">
+        <h3>14 - Aurelian Tchouaméni</h3>
+        <p>Centrocampista</p>
+      </div>
+    </div>
+
+    <div class="tarjeta-jugador medio">
+      <div class="contenido-jugador">
+        <img src="guler.jpg" alt="Guler">
+        <h3>15 - Arda Güler</h3>
+        <p>Centrocampista</p>
+      </div>
+    </div>
+
+    <div class="tarjeta-jugador medio">
+      <div class="contenido-jugador">
+        <img src="ceballos.jpg" alt="Ceballos">
+        <h3>19 - Dani Ceballos</h3>
+        <p>Centrocampista</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="categoria-jugadores">
+  <button class="btn-categoria">Delanteros</button>
+    <div class="contenido-categoria">
+        <div class="galeria-jugadores">
+
+        <div class="tarjeta-jugador delantero">
+        <div class="contenido-jugador">
+        <img src="vini.jpg" alt="Vinicius">
+        <h3>7 - Vinicius Júnior</h3>
+        <p>Extremo izquierdo</p>
+      </div>
+    </div>
+
+    <div class="tarjeta-jugador delantero">
+      <div class="contenido-jugador">
+        <img src="mbappe.jpg" alt="Mbappé">
+        <h3>9 -  Kylian Mbappé</h3>
+        <p>Delantero centro</p>
+      </div>
+    </div>
+
+    <div class="tarjeta-jugador delantero">
+      <div class="contenido-jugador">
+        <img src="rodrygo.jpg" alt="Rodrygo">
+        <h3>11 - Rodrygo Goes</h3>
+        <p>Extremo derecho</p>
+      </div>
+    </div>
+
+    <div class="tarjeta-jugador delantero">
+      <div class="contenido-jugador">
+        <img src="endrick.jpeg" alt="Endrick">
+        <h3>16 - Endrick</h3>
+        <p>Delantero centro</p>
+        </div>
+      </div>
+ 
+    <div class="tarjeta-jugador delantero">
+      <div class="contenido-jugador">
+        <img src="brahim.jpg" alt="Brahim">
+        <h3>21 - Brahim Díaz</h3>
+        <p>Extremo derecho</p>
+        </div>
+      </div> 
+    </div>
+  </div>
+</div>
+</section>
+
+<section class="seccion" id="historia">
+  <h2>Historia</h2>
+</section>
+
+<section class="seccion" id="contacto">
+  <h2>Contacto</h2>
+  <p>Puedes seguirnos en nuestras redes sociales</p>
+</section>
+</main>
+
+<div id="panel-partidos">
+  <h3>Próximos partidos</h3>
+  <table class="tabla-partidos" id="tabla-partidos">
+    <thead>
+      <tr>
+      <th>Fecha</th>
+      <th>Hora</th>
+      <th>Partido</th>
+      </tr>
+    </thead>
+    <tbody>
+
+    </tbody>
+  </table>
+</div>
+
+<script>
+  const partidos = [
+    {fecha: "2025-08-17", hora:"", equipo1: "Deportivo Alavés", equipo2:"Levante UD"},
+    {fecha: "2025-08-17", hora:"", equipo1: "Athletic Club", equipo2:"Sevilla FC"},
+    {fecha: "2025-08-17", hora:"", equipo1: "Celta de Vigo", equipo2:"Getafe CF"},
+    {fecha: "2025-08-17", hora:"", equipo1: "Gerona FC", equipo2:"Rayo Vallecano"},
+    {fecha: "2025-08-17", hora:"", equipo1: "RCD Espanyol", equipo2:"Atlético de Madrid"},
+    {fecha: "2025-08-17", hora:"", equipo1: "RCD Mallorca", equipo2:"FC Barcelona"},
+    {fecha: "2025-08-17", hora:"", equipo1: "Elche CF", equipo2:"Real Betis Balompié"},
+    {fecha: "2025-08-17", hora:"", equipo1: "Real Madrid CF", equipo2:"Osasuna"},
+    {fecha: "2025-08-17", hora:"", equipo1: "Valencia CF", equipo2:"Real Sociedad"},
+    {fecha: "2025-08-17", hora:"", equipo1: "Villarreal CF", equipo2:"Real Oviedo"},
+  ];
+  const tbody = document.querySelector("#tabla-partidos tbody");
+  partidos.forEach(partido => {
+  const fila = document.createElement("tr")
+  
+  const celdaFecha = document.createElement("td");
+  celdaFecha.textContent = partido.fecha;
+  
+  const celdaHora = document.createElement("td");
+  celdaHora.textContent = partido.hora;
+
+  const celdaPartido = document.createElement("td");
+  celdaPartido.textContent = `${partido.equipo1} vs ${partido.equipo2}`;
+
+  fila.appendChild(celdaFecha);
+  fila.appendChild(celdaHora);
+  fila.appendChild(celdaPartido);
+  tbody.appendChild(fila);
+  });
+</script>
+
+<script>
+  const carruselContenido = document.querySelector('.carrusel-contenido');
+  const btnPrev = document.querySelector('.btn-prev');
+  const btnNext = document.querySelector('.btn-next');
+  const video = document.querySelectorAll('.carrusel .video');
+
+  let indice = 0;
+
+  function actualizarCarrusel() {
+    const anchoVideo = video[0].offsetWidth;
+    const desplazamiento = -indice * anchoVideo;
+    carruselContenido.style.transform = `translateX(${desplazamiento}px)`;
+  }
+
+  btnNext.addEventListener('click', () => {
+    indice = (indice + 1) % video.length; 
+      actualizarCarrusel();
+  });
+
+  btnPrev.addEventListener('click', () => {
+    indice = (indice -1 + video.length) % videos.length; 
+      actualizarCarrusel();
+  });
+
+  window.addEventListener('resize', actualizarCarrusel);
+
+  setInterval(() => {
+    indice = (indice + 1) % video.length;
+    actualizarCarrusel();
+  }, 5000)
+</script>
+
+<script>
+  const botones = document.querySelectorAll('.btn-categoria');
+
+  botones.forEach(boton => {
+    boton.addEventListener('click', () => {
+      const contenido = boton.nextElementSibling;
+
+      contenido.classList.toggle('activa');
+    });
+  });
+</script>
+
+<footer>
+  <div class="footer-contenido">
+    <p>© 2025 Futboleros. Todos los derechos reservados.</p>
+    <div class="redes-sociales">
+        <a href="https://instagram.com/tu_usuario" target="_blank" rel="noopener">Instagram</a>
+    </div>
+  </div>
+</footer>
+</body>
+</html>
