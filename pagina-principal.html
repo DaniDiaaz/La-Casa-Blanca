@@ -429,8 +429,8 @@
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      gap: 15px;
-      padding: 20px;
+      gap: 25px;
+      margin-top: 30px;
       font-size: 14px;
       flex-direction: row;
     }
@@ -438,31 +438,136 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      width: 180px;
+      width: 200px;
     }
     .fecha {
-      background-color: #C5B358;
-      color: #003399;
-      border: none;
-      padding: 10px 14px;
-      border-radius: 8px;
-      cursor: pointer;
-      font-weight: bold;
-      width: 100%;
-      transition: background-color 0.3s ease;
-      text-align: center;
+     background: linear-gradient(135deg, #003399, #0055cc);
+     color: white;
+     padding: 12px 16px;
+     border: none;
+     border-radius: 10px;
+     font-weight: bold;
+     font-size: 14px;
+     width: 100%;
+     min-height: 50px;
+     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+     cursor: pointer;
+     transition: transform 0.2s, background 0.3s;
+     text-align: center;
+     height: 60px;
     }
     .fecha:hover {
-      background-color: #A89030;
+      background: linear-gradient(135deg, #C5B358, #e6d98e);
+      color: #002244;
+      transform: scale(1.05);
     }
     .detalle {
       display: none;
-      background-color: #f4f4f4;
-      border: 1px solid #ccc;
-      border-radius: 8px;
+      margin-top: 10px;
+      background-color: #f5f5f5;
+      padding: 14px;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      max-width: 100%;
+      font-size: 14px;
+      text-align: center;
+    }
+    .detalle.activo {
+      display: block;
+    }
+    .galeria-polaroid {
+      display: flex;
+      overflow: hidden;
+      position: relative;
+      cursor: pointer;
+      width: 100%;
+      background-color: #f9f9f9;
+      padding: 20px 0;
+    }
+    .carrusel-polaroid {
+      display: flex;
+      animation: scrollPolaroid 60s linear infinite;
+      width: fit-content;
+    }
+    .slides-polaroid {
+      display: flex;
+      gap: 20px;
+    }
+    @keyframes scrollPolaroid {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(-33.333%);
+      }
+    }
+    .polaroid {
+      background: white;
       padding: 10px;
-      margin-top: 8px;
-      text-align: left;
+      margin: 0 10px;
+      border: 1px solid #ccc;
+      box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+      text-align: center;
+      width: 150px;
+      flex-shrink: 0;
+      transform: rotate(-2deg);
+      transition: transform 0.3s;
+    }
+    .polaroid:hover {
+      transform: scale(1.05) rotate(0deg);
+      box-shadow: 0 20px 30px rgba(0, 0, 0, 0.3);
+    }
+    .polaroid img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 6px;
+    }
+    .leyenda-texto {
+      font-family: 'Courier New', Courier, monospace;
+      margin-top: 10px;
+      font-size: 18px;
+      color: #444;
+    }
+    .galeria-polaroid:hover .carrusel-polaroid {
+      animation-play-state: paused;
+    }
+    .linea-escudos-scroll {
+      display: flex;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      gap: 30px;
+      padding: 20px 0;
+      scroll-snap-type: x mandatory;
+    }
+    .item-evolucion {
+      flex: 0 0 auto;
+      width: 150px;
+      text-align: center;
+      background: white;
+      padding: 10px;
+      border-radius: 8px;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+      cursor: pointer;
+      scroll-snap-align: center;
+    }
+    .item-evolucion img {
+      width: 100px;
+      height: 100px;
+      object-fit: contain;
+      margin-bottom: 8px;
+      border-radius: 6px;
+      transition: transform 0.3s ease;
+    }
+    .item-evolucion:hover {
+      transform: scale(1.01);
+      box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+    }
+    .item-evolucion span {
+      font-weight: bold;
+      font-family: 'Courier New', Courier, monospace;
+      color: #444;
     }
     footer {
       background-color: #003399;
@@ -829,18 +934,18 @@
 
 <section class="seccion" id="historia">
   <h2>Historia del Real Madrid</h2>
-  <p>Un recorrido por los momentos más emblemáticos del club más grande del mundo</p>
+  
 
   <div class="timeline-horizontal">
     <div class="evento">
-      <button class="fecha" onclick="ToggleEvent(this)">1902 - Fundación</button>
+      <button class="fecha" onclick="ToggleEvento(this)">1902 - Fundación</button>
       <div class="detalle">
       <p>El club fue fundado como Madrid Football Club el 6 de marzo de 1902. En 1920, el rey Alfonso XIII le otorgó el título de "Real".</p>
       </div>
     </div>
 
     <div class="evento">
-      <button class="fecha" onclick="ToggleEvent(this)">1956 - 1ª Copa de Europa</button>
+      <button class="fecha" onclick="ToggleEvento(this)">1956 - 1ª Copa de Europa</button>
       <div class="detalle">
       <p>El Real Madrid gana la primera edición del torneo continental, venciendo al Stade de Reims (4-3). Comienza la era dorada.</p>
       </div>
@@ -848,34 +953,120 @@
 
 
     <div class="evento">
-      <span class="fecha">1960</span>
-      <p><strong>La Quinta Copa de Europa:</strong> El Madrid conquista su quinta copa consecutiva, con una exhibición histórica ante el Eintracht Frankfurt (7-3) con cuatro goles de Puskás.</p>
+      <button class="fecha" onclick="ToggleEvento(this)">1960 - 6ª Copa de Europa</button>
+      <div class="detalle">
+      <p>El Madrid conquista su quinta copa consecutiva, con una exhibición histórica ante el Eintracht Frankfurt (7-3) con cuatro goles de Puskás.</p>
+      </div>
     </div>
+
+
     <div class="evento">
-      <span class="fecha">1981-1986</span>
-      <p><strong>Nace la "Quinta del Buitre":</strong> Con Butragueño, Sanchís, Míchel, Martín Vázquez y Pardeza, el club vuelve a dominar en España con cinco ligas consecutivas.</p>
+      <button class="fecha" onclick="ToggleEvento(this)">1981-1986 - La Quinta del Buitre</button>
+      <div class="detalle">
+      <p>Con Butragueño, Sanchís, Míchel, Martín Vázquez y Pardeza, el club vuelve a dominar en España con cinco ligas consecutivas.</p>
+      </div>
     </div>
+
+
     <div class="evento">
-      <span class="fecha">1998</span>
-      <p><strong>La Séptima:</strong> Tras 32 años sin lograrla, el Madrid gana la Champions en Ámsterdam frente a la Juventus gracias a un gol de Mijatović (1-0).</p>
-    </div>
+      <button class="fecha" onclick="ToggleEvento(this)">1998 - La Séptima</button>
+        <div class="detalle">
+        <p>Tras 32 años sin lograrla, el Madrid gana la Champions en Ámsterdam frente a la Juventus gracias a un gol de Mijatović (1-0).</p>
+        </div>
+      </div>
+
+
     <div class="evento">
-      <span class="fecha">2000</span>
-      <p><strong>Florentino y los Galácticos:</strong> Llega Florentino Pérez a la presidencia. Fichajes como Figo, Zidane, Ronaldo o Beckham marcan una era de estrellas.</p>
+      <button class="fecha" onclick="ToggleEvento(this)">2000 - Florentino y los Galácticos</button>
+      <div class="detalle">
+      <p>Llega Florentino Pérez a la presidencia. Fichajes como Figo, Zidane, Ronaldo o Beckham marcan una era de estrellas.</p>
+      </div>
     </div>
+
+
     <div class="evento">
-      <span class="fecha">2014</span>
-      <p><strong>La Décima:</strong> En Lisboa, Sergio Ramos empata de cabeza en el 93’ y el equipo remonta al Atlético en la prórroga (4-1). Carlo Ancelotti entra en la historia.</p>
-    </div>
+      <button class="fecha" onclick="ToggleEvento(this)">2014 - La Décima</button>
+        <div class="detalle">
+        <p>En Lisboa, Sergio Ramos empata de cabeza en el 93’ y el equipo remonta al Atlético en la prórroga (4-1). Carlo Ancelotti entra en la historia.</p>
+        </div>
+      </div>
+
+
     <div class="evento">
-      <span class="fecha">2016-2018</span>
-      <p><strong>Tricampeonato histórico:</strong> Tricampeonato histórico:</strong> Zidane dirige al equipo a tres Champions consecutivas. Cristiano, Modrić, Kroos, Marcelo y Ramos lideran una generación legendaria.</p>
+      <button class="fecha" onclick="ToggleEvento(this)">2016-2018 - Tricampeonato histórico</button>
+      <div class="detalle">
+      <p>Zidane dirige al equipo a tres Champions consecutivas. Cristiano, Modrić, Kroos, Marcelo y Ramos lideran una generación legendaria.</p>
+      </div>
     </div>
+
+
     <div class="evento">
-      <span class="fecha">2022</span>
-      <p><strong>La 14ª Champions:</strong> Tras eliminar a PSG, Chelsea y City con remontadas increíbles, el Madrid gana al Liverpool en París. Courtois MVP, Vinícius marca el gol del título.</p>
-    </div>
+      <button class="fecha" onclick="ToggleEvento(this)">2022 - La 14ª Champions</button>
+      <div class="detalle">
+      <p>Tras eliminar a PSG, Chelsea y City con remontadas increíbles, el Madrid gana al Liverpool en París. Courtois MVP, Vinícius marca el gol del título.</p>
+      </div>
+      </div>
   </div>
+  <hr style="margin: 40px 0; border: 1px solid #ddd;">
+
+  <h3>Leyendas del Club</h3>
+  
+
+  <div class="galeria-polaroid">
+    <div class="carrusel-polaroid">
+      <div class="slides-polaroid" id="slider">
+    <div class="polaroid"><img src="distefano.jpg" alt="Di Stefano"><div class="leyenda-texto">Alfredo Di Stéfano</div></div>
+    <div class="polaroid"><img src="raul-gonzalez.jpg" alt="Raul"><div class="leyenda-texto">Raúl González Blanco</div></div>
+    <div class="polaroid"><img src="Miguel-Angel.jpg" alt="Miguel Angel"><div class="leyenda-texto">Miguel Ángel</div></div>
+    <div class="polaroid"><img src="cr7.jpg" alt="Cristiano"><div class="leyenda-texto">Cristiano Ronaldo</div></div>
+    <div class="polaroid"><img src="Sanchis.jpg" alt="Sanchis"><div class="leyenda-texto">Manolo Sanchís</div></div>
+    <div class="polaroid"><img src="ramos.jpg" alt="Sergio Ramos"><div class="leyenda-texto">Sergio Ramos</div></div>
+    <div class="polaroid"><img src="butragueño.jpg" alt="Buitre"><div class="leyenda-texto">Emilio Butragueño</div></div>
+    <div class="polaroid"><img src="zidane.jpg" alt="Zidane"><div class="leyenda-texto">Zinedine Zidane</div></div>
+    <div class="polaroid"><img src="puskas.jpg" alt="Puskas"><div class="leyenda-texto">Ferenc Puskás</div></div>
+    <div class="polaroid"><img src="keylor.jpg" alt="Navas"><div class="leyenda-texto">Keylor Navas</div></div>
+    <div class="polaroid"><img src="michel.jpg" alt="Michel"><div class="leyenda-texto">Míchel González</div></div>
+    <div class="polaroid"><img src="benzema.jpg" alt="Benzema"><div class="leyenda-texto">Karim Benzema</div></div>
+    <div class="polaroid"><img src="buyo.jpg" alt="Buyo"><div class="leyenda-texto">Paco Buyo</div></div>
+    <div class="polaroid"><img src="marcelo.jpg" alt="Marcelo"><div class="leyenda-texto">Marcelo</div></div>
+    <div class="polaroid"><img src="hierro.jpeg" alt="Hierro"><div class="leyenda-texto">Fernando Hierro</div></div>
+  </div>
+</div>
+</div>
+<hr style="margin: 40px 0; border: 1px solid #ddd">
+
+<h3>Evolución del escudo</h3>
+<div class="linea-escudos-scroll">
+  <div class="item-evolucion">
+    <img src="escudo1902.jpg" alt="Escudo 1902">
+    <span>1902</span>
+  </div>
+
+<div class="item-evolucion">
+    <img src="escudo1908.jpg" alt="Escudo 1908">
+    <span>1908</span>
+  </div>
+
+<div class="item-evolucion">
+  <img src="escudo1920.jpg" alt="Escudo 1920">
+  <span>1920</span>
+</div>
+
+<div class="item-evolucion">
+  <img src="escudo1931.png" alt="Escudo 1931">
+  <span>1931</span>
+</div>
+
+  <div class="item-evolucion">
+    <img src="escudo1941.jpg" alt="Escudo 1941">
+    <span>1941</span>
+  </div>
+
+  <div class="item-evolucion">
+    <img src="escudo2001.jpg" alt="Escudo 2001">
+    <span>2001</span>
+  </div>
+</div>
 </section>
 
 <section class="seccion" id="contacto">
@@ -937,6 +1128,16 @@
     detalle.style.display = "block";
   }
   }
+</script>
+
+<script>
+  window.addEventListener('DOMContentLoaded' , () => {
+    const slider = document.getElementById('slider');
+    const contenidoOriginal = slider.innerHTML;
+      const clone = slider.innerHTML;
+
+      slider.innerHTML = contenidoOriginal + contenidoOriginal + contenidoOriginal
+  });
 </script>
 
 <footer>
