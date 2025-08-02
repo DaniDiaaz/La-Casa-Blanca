@@ -1,8 +1,26 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <link rel="icon" href="favicon-16x16.png" type="image/png">
-  <link rel="apple-touch-icon" href="img/favicon-16x16.png">
+  <script>
+window.addEventListener('mouseover', initLandbot, { once: true });
+window.addEventListener('touchstart', initLandbot, { once: true });
+var myLandbot;
+function initLandbot() {
+  if (!myLandbot) {
+    var s = document.createElement('script');
+    s.type = "module"
+    s.async = true;
+    s.addEventListener('load', function() {
+      myLandbot = new Landbot.Popup({
+        configUrl: 'https://storage.googleapis.com/landbot.online/v3/H-3072176-SRIDMAX2G6XK5IL4/index.json',
+      });
+    });
+    s.src = 'https://cdn.landbot.io/landbot-3/landbot-3.0.0.mjs';
+    var x = document.getElementsByTagName('script')[0];
+    x.parentNode.insertBefore(s, x);
+  }
+}
+</script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta charset="UTF-8">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&display=swap" rel="stylesheet">
@@ -16,10 +34,12 @@
       margin: 0;
       padding-top: 70px;
     }
+
     h1, h2, h3 {
       color: #003399;
       font-weight: 700;
     }
+
     p {
       font-weight: 400;
     }
@@ -257,11 +277,6 @@
     }
     .btn-noticia:hover {
       background-color: #A89030;
-    }
-    .fecha-noticia {
-      font-size: 0.85rem;
-      color: #888;
-      margin-bottom: 0.5rem;
     }
     .carrusel {
       position: relative;
@@ -539,16 +554,15 @@
     }
     .linea-escudos-scroll {
       display: flex;
+      flex-wrap: nowrap;
       overflow-x: auto;
-      padding: 20px;
-      padding-left: 20px;
-      padding-right: 20px;
-      gap: 20px;
+      gap: 30px;
+      padding: 20px 0;
       scroll-snap-type: x mandatory;
     }
     .item-evolucion {
       flex: 0 0 auto;
-      width: 240px;
+      width: 150px;
       text-align: center;
       background: white;
       padding: 10px;
@@ -653,81 +667,57 @@
   <div class="noticias-grid">
 
     <div class="noticia">
-      <img src="carrerasrealmadrid.jpeg" id="Noticia 1">
-      <h3>Álvaro Carreras, nuevo jugador del Real Madrid</h3>
-      <p class="fecha-noticia">📅 15 de julio de 2025</p>
-      <p>El Real Madrid hace oficial el fichaje de Carreras por 50 millones de euros.</p>
-      <a href="fichaje-carreras.html" class="btn-noticia">Leer más</a>
-    </div>
-
-    <div class="noticia" data-fecha="2025-07-14">
-      <img src="carreras.jpg" id="Noticia 1">
-      <h3>Álvaro Carreras, muy cerca</h3>
-      <p class="fecha-noticia">📅 14 de julio de 2025</p>
-      <p>Real Madrid avanza en el fichaje de Álvaro Carreras desde el Benfica por unos 45 M €, con llegada prevista en la primera semana de agosto.</p>
-      <a href="noticia-carreras.html" class="btn-noticia">Leer más</a>
-    </div>
-
-    <div class="noticia" data-fecha="2025-07-11">
-      <img src="modricnoticia.jpg" alt="Noticia 2">
+      <img src="modricnoticia.jpg" alt="Noticia 1">
       <h3>Última entrevista de Luka Modrić</h3>
-      <p class="fecha-noticia">📅 11 de julio de 2025</p>
       <p>La última entrevista de Luka Modrić como jugador del Real Madrid, fue dada a los medios de Real Madrid TV.</p>
       <a href="#" class="btn-noticia">Leer más</a>
     </div>
 
-    <div class="noticia" data-fecha="2025-07-10">
-      <img src="modric.jpg" alt="Noticia 3">
+    <div class="noticia">
+      <img src="modric.jpg" alt="Noticia 1">
       <h3>Gracias por todo LEYENDA</h3>
-      <p class="fecha-noticia">📅 10 de julio de 2025</p>
       <p>Ayer fue el último partido de Luka Modrić con el Real Madrid, una de las mayores leyendas de nuestro club.</p>
       <a href="#" class="btn-noticia">Leer más</a>
     </div>
 
-    <div class="noticia" data-fecha="2025-07-09">
-      <img src="xabi.jpg" alt="Noticia 4">
+    <div class="noticia">
+      <img src="xabi.jpg" alt="Noticia 2">
       <h3>Adiós temporada 24/25</h3>
-      <p class="fecha-noticia">📅 9 de julio de 2025</p>
       <p>A pesar del resultado, Xabi Alonso afirmó que este revés servirá para “abrir una nueva era” en el equipo y aprender de los errores.</p>
       <a href="#" class="btn-noticia">Leer más</a>
     </div>
 
-    <div class="noticia" data-fecha="2025-07-09">
-      <img src="psg.jpg" alt="Noticia 5">
+    <div class="noticia">
+      <img src="psg.jpg" alt="Noticia 3">
       <h3>El PSG arrolla al Real Madrid</h3>
-      <p class="fecha-noticia">📅 9 de julio de 2025</p>
       <p>PSG 4–0 Real Madrid en la semifinal del Mundial de Clubes. Fabián Ruiz marcó 2 goles (6′ y 24′), Ousmane Dembélé anotó tras un error defensivo (9′) y Gonçalo Ramos sentenció en el 87′.</p>
       <a href="#" class="btn-noticia">Leer más</a>
     </div>
 
-    <div class="noticia" data-fecha="2025-07-08">
-      <img src="luisenrique.jpg" alt="Noticia 6">
+    <div class="noticia">
+      <img src="luisenrique.jpg" alt="Noticia 4">
       <h3>PSG vs Real Madrid</h3>
-      <p class="fecha-noticia">📅 8 de julio de 2025</p>
       <p>Luis Enrique, entrenador del PSG, esquiva hablar de Mbappé y destaca lo que significa medirse con “el equipo más exitoso del mundo” bajo condiciones extremas.</p>
       <a href="#" class="btn-noticia">Leer más</a>
     </div>
 
-    <div class="noticia" data-fecha="2025-07-06">
-      <img src="tchouameninoticia.jpg" alt="Noticia 7">
+    <div class="noticia">
+      <img src="tchouameninoticia.jpg" alt="Noticia 5">
       <h3>Tchouaméni: "Ojalá siga en el Madrid"</h3>
-      <p class="fecha-noticia">📅 6 de julio de 2025</p>
       <p>El mediocentro francés, pieza clave para Xabi Alonso, reafirma su voluntad de quedarse a largo plazo con el club.</p>
       <a href="#" class="btn-noticia">Leer más</a>
     </div>
 
-    <div class="noticia" data-fecha="2025-07-06">
-      <img src="rodrygonoticia.jpg" alt="Noticia 8">
+    <div class="noticia">
+      <img src="rodrygonoticia.jpg" alt="Noticia 6">
       <h3>El Bayern tantea a Rodrygo</h3>
-      <p class="fecha-noticia">📅 6 de julio de 2025</p>
       <p>Bayern explora una oferta de unos 65 M€ por Rodrygo, pero el Madrid quiere entre 80‑100 M€ y parece poco probable que le dejen ir.</p>
       <a href="#" class="btn-noticia">Leer más</a>
     </div>
 
-    <div class="noticia" data-fecha="2025-07-06">
-      <img src="frangarcianoticia.jpg" alt="Noticia 9">
+    <div class="noticia">
+      <img src="frangarcianoticia.jpg" alt="Noticia 7">
       <h3>Fran García llama la atención</h3>
-      <p class="fecha-noticia">📅 6 de julio de 2025</p>
       <p>El lateral izquierdo se ha ganado elogios en su rol con el sistema 3‑5‑2 de Xabi Alonso, haciendo replantearse un posible fichaje de Carreras.</p>
       <a href="#" class="btn-noticia">Leer más</a>
     </div>
@@ -736,16 +726,9 @@
 
 <section class="seccion" id="videos">
   <h2>📺 Vídeos destacados</h2>
-  
   <div class="carrusel">
     <button class="btn-prev">&#10094;</button>
     <div class="carrusel-contenido">
-
-    <div class="video">
-      <iframe src="https://www.youtube.com/embed/Mn8p-UgKUMk" title="Álvaro Carreras"></iframe>
-      <p class="titulo-video">Álvaro Carreras, nuevo jugador blanco.</p>
-    </div>
-    
     <div class="video">
       <iframe src="https://www.youtube.com/embed/Rc53dNT9oBo" title="Rueda de prensa Modrić"></iframe>
       <p class="titulo-video">La última entrevista de Modrić como jugador blanco</p>
@@ -1067,7 +1050,6 @@
     <div class="polaroid"><img src="buyo.jpg" alt="Buyo"><div class="leyenda-texto">Paco Buyo</div></div>
     <div class="polaroid"><img src="marcelo.jpg" alt="Marcelo"><div class="leyenda-texto">Marcelo</div></div>
     <div class="polaroid"><img src="hierro.jpeg" alt="Hierro"><div class="leyenda-texto">Fernando Hierro</div></div>
-    <div class="polaroid"><img src="gento.jpg" alt="Gento"><div class="leyenda-texto">Paco Gento</div></div>
   </div>
 </div>
 </div>
@@ -1114,45 +1096,17 @@
 </main>
 
 <script>
-  const diasMaximos = 10;
-  const ahora = new Date ();
-
-  document,querySelectorAll('.noticia').forEach(noticia => {
-    const fechaTexto = noticia.getAttribute('data-fecha');
-    const fechaNoticia = new Date(fechaTexto);
-
-    const diferenciaDias = Math.floor((ahora - fechaNoticia) / (1000 * 60 * 60 *24));
-
-    if (diferenciaDias > diasMaximos) {
-      noticia.style.display = 'none';
-    }
-  });
-</script>
-
-<script>
   const carruselContenido = document.querySelector('.carrusel-contenido');
   const btnPrev = document.querySelector('.btn-prev');
   const btnNext = document.querySelector('.btn-next');
   const video = document.querySelectorAll('.carrusel .video');
 
   let indice = 0;
-  let intervaloCarrusel;
 
   function actualizarCarrusel() {
     const anchoVideo = video[0].offsetWidth;
     const desplazamiento = -indice * anchoVideo;
     carruselContenido.style.transform = `translateX(${desplazamiento}px)`;
-  }
-
-  function iniciarCarrusel() {
-    intervaloCarrusel = setInterval(() => {
-      indice = (indice + 1) % video.length;
-      actualizarCarrusel();
-    }, 5000)
-  }
-
-  function detenerCarrusel() {
-    clearInterval(intervaloCarrusel);
   }
 
   btnNext.addEventListener('click', () => {
@@ -1161,19 +1115,16 @@
   });
 
   btnPrev.addEventListener('click', () => {
-    indice = (indice - 1 + video.length) % videos.length; 
+    indice = (indice -1 + video.length) % videos.length; 
       actualizarCarrusel();
   });
 
   window.addEventListener('resize', actualizarCarrusel);
 
-  videos.forEach(video => {
-    video.addEventListener('play', () => {
-      detenerCarrusel();
-    });
-  });
-
-  iniciarCarrusel();
+  setInterval(() => {
+    indice = (indice + 1) % video.length;
+    actualizarCarrusel();
+  }, 5000)
 </script>
 
 <script>
